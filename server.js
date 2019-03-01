@@ -15,19 +15,9 @@ var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/WellnessTracke
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(logger("dev"));
-
 //CORS
-const production  = 'https://wellness-tracker-app.herokuapp.com/';
-const development = 'http://localhost:3000/';
-var url;
 
-if (process.env.NODE_ENV){
-    url = production;
-} else {
-    url = development;
-}
-console.log('url = ' + url)
-var whitelist = [url]
+var whitelist = [process.env.NODE_ENV, 'https://wellness-tracker-app.herokuapp.com/', 'http://localhost:3000']
 var corsOptions = {
   origin: function (origin, callback) {
     if (whitelist.indexOf(origin) !== -1) {
