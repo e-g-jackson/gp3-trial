@@ -28,15 +28,19 @@ if (process.env.NODE_ENV){
 console.log('url = ' + url);
 if(process.env.PORT){console.log('process.env.PORT = ' + process.env.PORT)};
 
-var whitelist = [url, process.env.PORT]
+// var whitelist = [url, process.env.PORT]
+// var corsOptions = {
+//   origin: function (origin, callback) {
+//     if (whitelist.indexOf(origin) !== -1) {
+//       callback(null, true)
+//     } else {
+//       callback(new Error('Not allowed by CORS'))
+//     }
+//   }
+// }
 var corsOptions = {
-  origin: function (origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true)
-    } else {
-      callback(new Error('Not allowed by CORS'))
-    }
-  }
+    origin: url,
+    optionSuccessStatus: 200
 }
 
 app.use(cors(corsOptions));
