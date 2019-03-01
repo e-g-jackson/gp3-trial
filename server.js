@@ -25,9 +25,10 @@ if (process.env.NODE_ENV){
 } else {
     url = development;
 }
-console.log('url = ' + url)
+console.log('url = ' + url);
+console.log('process.env.PORT = ' + process.env.PORT);
 
-var whitelist = url
+var whitelist = [url, process.env.PORT]
 // var whitelist = [process.env.NODE_ENV, 'https://wellness-tracker-app.herokuapp.com/', 'http://localhost:3000']
 var corsOptions = {
   origin: function (origin, callback) {
