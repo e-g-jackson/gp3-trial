@@ -16,7 +16,7 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(logger("dev"));
 //CORS
-var whitelist = [process.env.NODE_ENV, 'http://localhost:3000']
+var whitelist = [process.env.NODE_ENV, 'https://wellness-tracker-app.herokuapp.com/', 'http://localhost:3000']
 var corsOptions = {
   origin: function (origin, callback) {
     if (whitelist.indexOf(origin) !== -1) {
@@ -48,6 +48,8 @@ if(process.env.NODE_ENV === "production") {
 
 require('./routes/dataRoutes')(app, db);
 require('./routes/htmlRoutes')(app);
+
+console.log(process.env)
 
 app.listen(PORT, () => {
     console.log(`🌎 ==> API server now on port ${PORT}!`)
