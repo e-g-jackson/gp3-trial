@@ -16,14 +16,25 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(logger("dev"));
 //CORS
+const production  = 'https://wellness-tracker-app.herokuapp.com/';
+const development = 'http://localhost:3000/';
+var url;
 
-var whitelist = [process.env.NODE_ENV, 'https://wellness-tracker-app.herokuapp.com/', 'http://localhost:3000']
+if (process.env.NODE_ENV){
+    url = production;
+} else {
+    url = development;
+}
+console.log('url = ' + url)
+
+var whitelist = url
+// var whitelist = [process.env.NODE_ENV, 'https://wellness-tracker-app.herokuapp.com/', 'http://localhost:3000']
 var corsOptions = {
   origin: function (origin, callback) {
     if (whitelist.indexOf(origin) !== -1) {
       callback(null, true)
     } else {
-      callback(new Error('Not allowed by CORS muh fucka'))
+      callback(new Error('Not allowed by CORS'))
     }
   }
 }
