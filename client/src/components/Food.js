@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import helper from "../../../routes/dataHelper"
+// import helper from "../../../routes/dataHelper"
 // import $ from "jquery";
 
 class Food extends React.Component {
@@ -23,8 +23,8 @@ class Food extends React.Component {
         //     method: 'POST',
         //     body: data
         // }).catch(err => {throw err})
-
-        axios.defaults.baseURL = helper;
+        // const helper = () => axios.get()
+        axios.defaults.baseURL =  process.env.NODE_ENV|| 'http://localhost:3001';
 
         axios.post("/db/food", data)
             .then((response)=>{
