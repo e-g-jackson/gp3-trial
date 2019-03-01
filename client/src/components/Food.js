@@ -24,7 +24,19 @@ class Food extends React.Component {
         //     body: data
         // }).catch(err => {throw err})
         // const helper = () => axios.get()
-        axios.defaults.baseURL =  process.env.NODE_ENV|| 'http://localhost:3001';
+        
+        const production  = 'https://wellness-tracker-app.herokuapp.com/';
+        const development = 'http://localhost:3001/';
+        var url;
+        
+        if (process.env.NODE_ENV === "production"){
+            url = production;
+        } else if (process.env.NODE_ENV === "development"){
+            url = development;
+        }
+
+        console.log('process.env.NODE_ENV = ' + process.env.NODE_ENV)
+        axios.defaults.baseURL =  url;
 
         axios.post("/db/food", data)
             .then((response)=>{
