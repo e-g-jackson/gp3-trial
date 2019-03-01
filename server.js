@@ -1,11 +1,11 @@
-// const $ = require('jquery');
 const express = require('express');
 const path = require('path');
-// const mongo = require('mongodb');
 const mongoose = require('mongoose');
 var logger = require('morgan');
-// const axios = require('axios');
 const cors = require('cors');
+// const $ = require('jquery');
+// const mongo = require('mongodb');
+// const axios = require('axios');
 
 const app = express();
 
@@ -48,8 +48,6 @@ if(process.env.NODE_ENV === "production") {
 
 require('./routes/dataRoutes')(app, db);
 require('./routes/htmlRoutes')(app);
-
-console.log(process.env)
 
 app.listen(PORT, () => {
     console.log(`🌎 ==> API server now on port ${PORT}!`)
