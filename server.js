@@ -18,15 +18,15 @@ app.use(logger("dev"));
 
 //CORS
 const production  = 'https://wellness-tracker-app.herokuapp.com/';
-const development = 'http://localhost:3001/';
+const development = 'http://localhost:3000/';
 var url;
 
-if (process.env.NODE_ENV === "production"){
+if (process.env.NODE_ENV){
     url = production;
-} else if (process.env.NODE_ENV === "development"){
+} else {
     url = development;
 }
-
+console.log('url = ' + url)
 var whitelist = [url]
 var corsOptions = {
   origin: function (origin, callback) {
