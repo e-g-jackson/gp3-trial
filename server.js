@@ -16,7 +16,7 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(logger("dev"));
 //CORS
-const production  = 'wellness-tracker-app.herokuapp.com';
+const production  = 'https://wellness-tracker-app.herokuapp.com';
 const development = 'http://localhost:3000';
 var url;
 
@@ -60,6 +60,10 @@ if(process.env.NODE_ENV === "production") {
 
 require('./routes/dataRoutes')(app, db);
 require('./routes/htmlRoutes')(app);
+
+app.use('*', (req, res) => {
+    res.sendFile(path.join(__dirname, "./client/build/index.html"));
+})
 
 app.listen(PORT, () => {
     console.log(`🌎 ==> API server now on port ${PORT}!`)
